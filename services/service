@@ -1,0 +1,12 @@
+package services
+
+import (
+	"golang-restapi/db"
+	"golang-restapi/models"
+)
+
+func GetAllProducts() ([]models.Product, error) {
+	var products []models.Product
+	result := db.DB.Find(&products)
+	return products, result.Error
+}
