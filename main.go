@@ -7,3 +7,7 @@ func main() {
 	fewfwe
 	fwefw
 }
+
+fwsf
+fwf
+fewf
