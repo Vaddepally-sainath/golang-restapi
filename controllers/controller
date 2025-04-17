@@ -15,3 +15,5 @@ func GetProducts(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, products)
 }
+vfed
+fwefcwe
