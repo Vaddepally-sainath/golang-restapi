@@ -4,8 +4,7 @@ func main() {
 
 	hfererrev
 	fweff
-	fewfwe
-	fwefw
+
 }
 
 fwsf
