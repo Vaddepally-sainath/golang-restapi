@@ -1,4 +1,5 @@
 package main
+my name is
 
 func main() {
 
@@ -7,6 +8,3 @@ func main() {
 
 }
 
-sainath
-netha
-chetan
