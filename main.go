@@ -7,5 +7,3 @@ func main() {
 	fweff
 
 }
-
-
