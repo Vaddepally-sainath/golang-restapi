@@ -1,6 +1,7 @@
 lmodule github.com/Vaddepally-sainath/golang-restapi
 my name
 go 1.21.5
+gergerger
 hello hai
 require (
 	github.com/bytedance/sonic v1.12.6 // indirect
