@@ -7,7 +7,4 @@ func main() {
 	fweff
 
 }
-sainath netha
-fwsf
-fwf
-fewf
+
