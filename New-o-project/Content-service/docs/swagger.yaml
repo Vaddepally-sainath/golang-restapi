@@ -1,0 +1,86 @@
+basePath: /
+definitions:
+  Models.Cast:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      role:
+        description: e.g., "Lead", "Supporting"
+        type: string
+      video_id:
+        description: Foreign key
+        type: integer
+    type: object
+  Models.Genre:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      videos:
+        items:
+          $ref: '#/definitions/Models.Videos'
+        type: array
+    type: object
+  Models.Videos:
+    properties:
+      ID:
+        type: integer
+      Ispremium:
+        type: boolean
+      Releaseyear:
+        maximum: 2025
+        minimum: 1900
+        type: integer
+      Title:
+        type: string
+      cast:
+        items:
+          $ref: '#/definitions/Models.Cast'
+        type: array
+      genre:
+        items:
+          $ref: '#/definitions/Models.Genre'
+        type: array
+    required:
+    - Releaseyear
+    - Title
+    type: object
+host: localhost:9080
+info:
+  contact: {}
+  description: This is a sample server with two GET APIs using Gin and Swagger.
+  title: Example API
+  version: "1.0"
+paths:
+  /videos:
+    post:
+      consumes:
+      - application/json
+      description: Accepts video metadata and stores it in the database
+      parameters:
+      - description: Video metadata
+        in: body
+        name: video
+        required: true
+        schema:
+          $ref: '#/definitions/Models.Videos'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/Models.Videos'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Store video metadata
+      tags:
+      - Videos
+swagger: "2.0"

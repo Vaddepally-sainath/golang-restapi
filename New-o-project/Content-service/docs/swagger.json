@@ -1,0 +1,129 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a sample server with two GET APIs using Gin and Swagger.",
+        "title": "Example API",
+        "contact": {},
+        "version": "1.0"
+    },
+    "host": "localhost:9080",
+    "basePath": "/",
+    "paths": {
+        "/videos": {
+            "post": {
+                "description": "Accepts video metadata and stores it in the database",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Videos"
+                ],
+                "summary": "Store video metadata",
+                "parameters": [
+                    {
+                        "description": "Video metadata",
+                        "name": "video",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Models.Videos"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/Models.Videos"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Models.Cast": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "role": {
+                    "description": "e.g., \"Lead\", \"Supporting\"",
+                    "type": "string"
+                },
+                "video_id": {
+                    "description": "Foreign key",
+                    "type": "integer"
+                }
+            }
+        },
+        "Models.Genre": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "videos": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Models.Videos"
+                    }
+                }
+            }
+        },
+        "Models.Videos": {
+            "type": "object",
+            "required": [
+                "Releaseyear",
+                "Title"
+            ],
+            "properties": {
+                "ID": {
+                    "type": "integer"
+                },
+                "Ispremium": {
+                    "type": "boolean"
+                },
+                "Releaseyear": {
+                    "type": "integer",
+                    "maximum": 2025,
+                    "minimum": 1900
+                },
+                "Title": {
+                    "type": "string"
+                },
+                "cast": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Models.Cast"
+                    }
+                },
+                "genre": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Models.Genre"
+                    }
+                }
+            }
+        }
+    }
+}
